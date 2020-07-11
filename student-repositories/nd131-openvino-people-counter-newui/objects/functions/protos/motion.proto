@@ -1,0 +1,42 @@
+syntax = "proto2";
+
+package people_detection.protos;
+
+// Configuration proto for the anchor generator to use in the object detection
+// pipeline. See core/anchor_generator.py for details.
+message MotionReferenceInterval {
+  optional float camera_proximity_dimension = 1 [default=144.0];
+  optional float camera_proximity_dimension = 2 [default=90.0];
+
+  optional float reference_dimensions_width = 3 [default=144.0];
+  optional float reference_dimensions_height = 4 [default=117.0];
+
+  optional float measured_length = 5 [default=140.0];
+  optional float measured_height = 6 [default=140.0];
+
+  optional float hfov = 7 [default=60];
+  optional float vfov = 8 [default=40];
+
+  optional float camera_known_proximity = 9 [default=0.75];
+  optional float camera_known_distant = 10 [default=5.0];
+  optional float alpha = 11 [default=0.00001];
+}
+
+message MotionTracker {
+  enum method {
+    ARGMAX = 1 [default=1];
+    FACE = 2 [default=2];
+  }
+  optional string point_color = 1 [default="red"];
+  optional string box_color = 2 [default="blue"];
+  optional float velocity_alpha = 3 [default=0.01];
+}
+
+message ComplexTransform {
+  enum method {
+    AMPLITUDE = 1 [default=1];
+    MAGNITUDE = 2 [default=2];
+  }
+
+  optional bool lighting_mode = 1 [default=false];
+}

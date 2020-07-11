@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<net batch="1" name="arcface" version="6">
+	<layers>
+        <layer id="28" name="dense_1/MatMul" precision="FP32" type="FullyConnected">
+			<data out-size="5"/>
+			<input>
+				<port id="0">
+					<dim>1</dim>
+					<dim>40</dim>
+				</port>
+			</input>
+			<output>
+				<port id="3">
+					<dim>1</dim>
+					<dim>5</dim>
+				</port>
+			</output>
+			<blobs>
+				<weights offset="6500" size="1500"/>
+				<biases offset="6500" size="1500"/>
+			</blobs>
+		</layer>
+        <layer id="29" name="batch_normalization_11/cond/Merge" precision="FP32" type="PNORM">
+            <data power="-1.0" scale="1" shift="0"/>
+            <input>
+                <port id="0">
+                    <dim>1</dim>
+                    <dim>5</dim>
+                </port>
+            </input>
+            <output>
+                <port id="1">
+                    <dim>1</dim>
+                    <dim>5</dim>
+                </port>
+            </output>
+        </layer>
+    </layers>
+    <edges>
+		<edge from-layer="28" from-port="3" to-layer="29" to-port="0"/>
+	</edges>
+	<meta_data>
+		<MO_version value="2019.3.0-408-gac8584cb7"/>
+		<cli_parameters>
+			<blobs_as_inputs value="False"/>
+			<data_type value="FP32"/>
+			<disable_nhwc_to_nchw value="False"/>
+			<disable_resnet_optimization value="False"/>
+			<enable_concat_optimization value="False"/>
+			<extensions value="DIR"/>
+			<framework value="tf"/>
+			<freeze_placeholder_with_value value="{}"/>
+			<generate_experimental_IR_V10 value="False"/>
+			<input value="dense_1/MatMul"/>
+			<input_model value="DIR/arcface.pb"/>
+			<input_model_is_text value="False"/>
+			<input_shape value="[1, 40]"/>
+			<keep_quantize_ops_in_IR value="False"/>
+			<keep_shape_ops value="False"/>
+			<log_level value="DEBUG"/>
+			<mean_scale_values value="{}"/>
+			<mean_values value="()"/>
+			<move_to_preprocess value="False"/>
+			<output value="['batch_normalization_11/cond/Merge']"/>
+			<output_dir value="DIR"/>
+			<placeholder_shapes value="{'dense_1/MatMul': array([1, 40])}"/>
+			<reverse_input_channels value="False"/>
+			<scale_values value="()"/>
+			<silent value="False"/>
+			<steps value="False"/>
+			<tensorflow_object_detection_api_pipeline_config value="DIR/pipeline.config"/>
+			<tensorflow_use_custom_operations_config value="DIR/operations.json"/>
+			<version value="False"/>
+			<unset unset_cli_parameters="batch, disable_fusing, disable_gfusing, finegrain_fusing, generate_deprecated_IR_V2, input_checkpoint, input_meta_graph, model_name, saved_model_dir, saved_model_tags, scale, tensorboard_logdir, tensorflow_custom_layer_libraries, tensorflow_custom_operations_config_update, tensorflow_operation_patterns, tensorflow_subgraph_patterns"/>
+		</cli_parameters>
+	</meta_data>
+</net>

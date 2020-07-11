@@ -1,0 +1,70 @@
+models:
+  - name: ssd_edge_optimized-cv
+    launchers:
+      - framework: opencv
+        device: CPU
+        model:   person-detector/SqueezeNetSSD-5Class_64.prototxt
+        weights: person-detector/SqueezeNetSSD-5Class.caffemodel
+        adapter: ssd
+        batch: 64
+        backend: ocv
+        cpu_extensions: libcpu_extension_sse4.so
+        inputs:
+          - type: INPUT
+            name: 'data'
+            value: 0
+            shape: 64, 3, 224, 224
+  
+      - framework: dlsdk
+        device: CPU
+        cpu_extensions: libcpu_extension_sse4.so
+        tags:
+          - FP32
+        model:   person-detector/FP32/SqueezeNetSSD-5Class.xml
+        weights: person-detector/FP32/SqueezeNetSSD-5Class.bin
+        adapter: ssd
+        backend: ie
+        batch: 1
+        inputs:
+          - type: INPUT
+            name: 'data'
+            value: 0
+            shape: 1, 3, 224, 224
+    datasets:
+      - name: VOC2007
+        preprocessing:
+          - type: resize
+            dst_width: 224
+            dst_height: 224
+        annotation_conversion:
+          converter: voc_detection
+          annotations_dir: VOCdevkit/VOC2007/Annotations
+          images_dir: VOCdevkit/VOC2007/JPEGImages
+          imageset_file: VOCdevkit/VOC2007/ImageSets/Main/person_trainval_imgsets_data.txt
+        data_source: VOCdevkit/VOC2007/JPEGImages
+        annotation: output/voc_detection.pickle
+        dataset_meta: output/voc_detection.json
+        postprocessing:
+          - type: resize_prediction_boxes
+        metrics:
+          - type: map
+            integral: 11point
+            ignore_difficult: True
+            presenter: print_scalar
+          - type: recall
+            overlap_threshold: 0.1
+            allow_multiple_matches_per_ignored: True
+            ignore_difficult: True
+            distinct_conf: True
+            presenter: print_scalar
+          - type: detection_accuracy
+            ignore_difficult: True
+            overlap_threshold: 0.1
+            allow_multiple_matches_per_ignored: True
+            ignore_difficult: True
+            distinct_conf: True
+            presenter: print_scalar
+          - type: reid_map
+            presenter: print_scalar
+            threshold: 0.3
+            interpolated_auc: True

@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+package people_detection.protos;
+
+// Configuration proto for the anchor generator to use in the object detection
+// pipeline. See core/anchor_generator.py for details.
+message PeopleCounter {
+  optional int32 num_people = 1 [default=0];
+  optional float average_confidence_level = 2 [default=0.0];
+  optional float time_spent = 3 [default=0.0];
+}
+
+message FaceCounter {
+  optional int32 num_face = 1 [default=0];
+  optional float average_confidence_level = 2 [default=0.0];
+  optional float time_spent = 3 [default=0.0];
+}
+
+message People {
+  optional int32 people_id = 1;
+
+  message Dimensions {
+    optional float stationary = 1 [default=0.0];
+    optional float alternate = 2 [default=0.0];
+    optional float large = 3 [default=0.0];
+    optional float weight1 = 4 [default=0.0];
+    optional float weight2 = 5 [default=0.0];
+  }
+}

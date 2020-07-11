@@ -1,0 +1,10 @@
+
+Per-node process memory usage (in MBs) for PID 25092 (python3.6)
+                           Node 0           Total
+                  --------------- ---------------
+Huge                         0.00            0.00
+Heap                       142.52          142.52
+Stack                        0.10            0.10
+Private                    879.03          879.03
+----------------  --------------- ---------------
+Total                     1021.65         1021.65

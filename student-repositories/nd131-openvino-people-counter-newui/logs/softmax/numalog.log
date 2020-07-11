@@ -1,0 +1,10 @@
+
+Per-node process memory usage (in MBs) for PID 18500 (python3.6)
+                           Node 0           Total
+                  --------------- ---------------
+Huge                         0.00            0.00
+Heap                       119.66          119.66
+Stack                        0.15            0.15
+Private                   1985.82         1985.82
+----------------  --------------- ---------------
+Total                     2105.64         2105.64

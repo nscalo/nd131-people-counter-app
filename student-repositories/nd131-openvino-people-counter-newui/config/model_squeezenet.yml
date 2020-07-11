@@ -1,0 +1,53 @@
+models:
+  - name: squeezenet_softmax
+    launchers:
+      - framework: opencv
+        device: CPU
+        model:   object-detector/squeezenet_softmax_64.prototxt
+        weights: object-detector/squeezenet_softmax.caffemodel
+        adapter: ssd
+        batch: 64
+        backend: ocv
+        cpu_extensions: libcpu_extension_sse4.so
+        inputs:
+          - type: INPUT
+            name: 'data'
+            value: 0
+            shape: 64, 3, 224, 224
+
+      - framework: dlsdk
+        device: CPU
+        cpu_extensions: libcpu_extension_sse4.so
+        tags:
+          - FP32
+        model:   object-detector/squeezenet_softmax.xml
+        weights: object-detector/squeezenet_softmax.bin
+        adapter: ssd
+        backend: ie
+        batch: 1
+        inputs:
+          - type: INPUT
+            name: 'data'
+            value: 0
+            shape: 1, 3, 224, 224
+
+    datasets:
+      - name: VOC2007
+        preprocessing:
+          - type: resize
+            dst_width: 224
+            dst_height: 224
+        annotation_conversion:
+          converter: voc_detection
+          annotations_dir: VOCdevkit/VOC2007/Annotations
+          images_dir: VOCdevkit/VOC2007/JPEGImages
+          imageset_file: VOCdevkit/VOC2007/ImageSets/Main/person_trainval_imgsets_data.txt
+        data_source: VOCdevkit/VOC2007/JPEGImages
+        annotation: output/voc_detection.pickle
+        dataset_meta: output/voc_detection.json
+        postprocessing:
+          - type: resize_prediction_boxes
+        metrics:
+          - type: clip_accuracy
+            threshold: 0.2
+            presenter: print_scalar

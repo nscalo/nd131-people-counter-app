@@ -1,0 +1,11 @@
+<CustomLayer name="PNORM" type="MVCL" version="1">
+    <Kernel entry="layer_template">
+        <Source filename="layer_template.bin"/>
+    </Kernel>
+    <Parameters>
+        <Scalar arg-name="power"  type="int" port-index="0" source="factor"  />
+        <Scalar arg-name="scale"  type="int" port-index="0" source="factor"  />
+        <Scalar arg-name="shift" type="int"  source="factor" />
+    </Parameters>
+    <WorkSizes dim="output,1" global="1,1,1" local="1,1,1" />
+</CustomLayer>

@@ -1,0 +1,29 @@
+models:
+  - name: pnorm
+    launchers:
+      - framework: dlsdk
+        tags:
+          - FP32
+        model:   arcface-project/pnorm/arcface.xml
+        weights: arcface-project/pnorm/arcface.bin
+        adapter: ssd
+        batch: 64
+        cpu_extensions: AUTO
+
+    datasets:
+      - name: VOC2007
+        annotation_conversion:
+          converter: voc_detection
+          annotations_dir: VOCdevkit/VOC2007/Annotations
+          images_dir: VOCdevkit/VOC2007/JPEGImages
+          imageset_file: VOCdevkit/VOC2007/ImageSets/Main/person_trainval_imgsets_data.txt
+        data_source: VOCdevkit/VOC2007/JPEGImages
+        annotation: output/voc_detection.pickle
+        dataset_meta: output/voc_detection.json
+        postprocessing:
+        - type: resize_prediction_boxes
+        metrics:
+        - type: map
+          integral: 11point
+          ignore_difficult: True
+          presenter: print_scalar

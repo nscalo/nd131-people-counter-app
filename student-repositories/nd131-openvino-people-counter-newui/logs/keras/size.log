@@ -1,0 +1,23 @@
+Filename: /home/aswin/Documents/Courses/Udacity/Intel-Edge-Phase2/Repository/arcface-project/models/mnist_vgg8_arcface_5d_pnorm/model_sm.hdf5
+File information
+	# of unique groups: 68
+	# of unique datasets: 113
+	# of unique named datatypes: 0
+	# of unique links: 0
+	# of unique other: 0
+	Max. # of links to object: 1
+	Max. # of objects in group: 46
+Free-space persist: FALSE
+Free-space section threshold: 1 bytes
+Small size free-space sections (< 10 bytes):
+	Total # of small size sections: 0
+Free-space section bins:
+	Total # of sections: 0
+File space management strategy: H5F_FSPACE_STRATEGY_FSM_AGGR
+File space page size: 4096 bytes
+Summary of file space information:
+  File metadata: 112480 bytes
+  Raw data: 808840 bytes
+  Amount/Percent of tracked free space: 0 bytes/0.0%
+  Unaccounted space: 27264 bytes
+Total space: 948584 bytes

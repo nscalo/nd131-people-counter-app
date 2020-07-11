@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+package people_detection.protos;
+
+// Configuration proto for the anchor generator to use in the object detection
+// pipeline. See core/anchor_generator.py for details.
+message PeopleDetector {
+  optional float confidence_level = 1 [default=0.48];
+
+  enum method {
+    SQUEEZENET = 1 [default=1];
+    SQUEEZENET_EDGE_OPTIMIZED = 2 [default=2];
+  }
+
+  optional string box_color = 2 [default="blue"];
+}

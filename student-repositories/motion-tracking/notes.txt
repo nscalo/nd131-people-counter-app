@@ -1,0 +1,18 @@
+Conversion Issues
+-----------------
+
+ATen operator
+NonZero operator
+
+While assignment of values to a torch tensor, ATen and NonZero got truggered due to each other.
+
+This was not valid from conversion to OpenVINO XML model.
+
+torch.cat / Broadcast was used to create the tensor.
+
+MatMul operator
+
+While doing matmul of 4,4 and 4,-1 shapes, the operations were rejected by openvino ie 
+
+This was not valid due to input graph on points being constant
+

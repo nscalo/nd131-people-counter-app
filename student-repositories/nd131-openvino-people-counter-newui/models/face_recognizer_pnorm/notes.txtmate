@@ -1,0 +1,5 @@
+
+- batch norm 11
+
+/usr/bin/python3.6 /home/aswin/Documents/Courses/Udacity/Intel-Edge/Work/EdgeApp/License_Plate_Recognition/tools/workbench/openvino/deployment_tools/model_optimizer/mo_tf.py --data_type "FP32" --tensorflow_object_detection_api_pipeline_config pipeline.config --tensorflow_use_custom_operations_config operations.json --input_model arcface.pb --input_shape "[1,160,160,3]" --input "input_1" --output "batch_normalization_11/cond/Merge" --log_level=DEBUG
+

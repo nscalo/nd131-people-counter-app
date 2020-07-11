@@ -1,0 +1,20 @@
+WARNING:tensorflow:From /home/aswin/.local/lib/python3.6/site-packages/tensorflow/python/ops/resource_variable_ops.py:435: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+WARNING:tensorflow:From /home/aswin/.local/lib/python3.6/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+INFO:root:Frame preprocessing time: 4.199229955673218
+INFO:root:Frame inference time: 0.8049204349517822, 0.03095847826737624 per face-image
+INFO:root:Frame post-process time: 0.003447294235229492, 0.00013258823981651894 per face-image
+INFO:root:Frame preprocessing time: 4.176897287368774
+INFO:root:Frame inference time: 0.5183160305023193, 0.021596501270929973 per face-image
+INFO:root:Frame post-process time: 0.003194570541381836, 0.00013310710589090982 per face-image
+INFO:root:Frame preprocessing time: 4.148271799087524
+INFO:root:Frame inference time: 0.5270977020263672, 0.021962404251098633 per face-image
+INFO:root:Frame post-process time: 0.003194093704223633, 0.0001330872376759847 per face-image
+INFO:root:Frame preprocessing time: 5.080425262451172
+INFO:root:Frame inference time: 0.5671689510345459, 0.02363203962643941 per face-image
+INFO:root:Frame post-process time: 0.0032765865325927734, 0.00013652443885803223 per face-image
+INFO:root:Frame preprocessing time: 4.712575674057007
+INFO:root:Frame inference time: 0.6373791694641113, 0.0219785920504866 per face-image

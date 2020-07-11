@@ -1,0 +1,70 @@
+syntax = "proto2";
+
+package people_detection.protos;
+
+// Configuration proto for the anchor generator to use in the object detection
+// pipeline. See core/anchor_generator.py for details.
+message FaceDetector {
+  optional int32 width = 1 [default=160];
+  optional int32 height = 2 [default=160];
+
+  optional float confidence_level = 3 [default=0.48];
+  optional bool grayscale = 4 [default=false];
+
+  optional string box_color = 5 [default="blue"];
+
+  enum method {
+    OPENCV_HAAR = 1 [default=1];
+    OPENCV_DNN = 2 [default=2];
+  }
+
+  optional float dnn_scale_factor = 6 [default=1.0];
+
+  optional string prototxt = 7 [default="models/opencv_dnn/deploy.prototxt"];
+  optional string model = 8 [default="models/opencv_dnn/res10_300x300_ssd_iter_140000_fp16.caffemodel"];
+
+  optional float R_scale = 9 [default=104.];
+  optional float G_scale = 10 [default=177.];
+  optional float B_scale = 11 [default=123.];
+
+  optional float haar_scale_factor = 12 [default=1.3];
+  optional int32 min_neighbors = 13 [default=5];
+
+  optional string HAAR_PATH = 14 [default="/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml"];
+}
+
+message FaceRecognizer {
+  optional int32 num_features = 1 [default=5];
+
+  enum Dimensions {
+    STATIONARY = 1 [default=1];
+    ALTERNATE = 0.5 [default=2];
+    LARGE = 1 [default=3];
+    WEIGHT1 = 10 [default=4];
+    WEIGHT2 = 10 [default=5];
+  }
+
+  enum method {
+    ARCFACE = 1 [default=1];
+    SQUEEZENET_SOFTMAX = 2 [default=2];
+  }
+
+  optional bool grayscale = 1 [default=true];
+  optional bool use_custom_layers = 2 [default=true];
+
+  optional float statistical_significance = 3 [default=0.02];
+}
+
+message FaceDetectionEnhancer {
+  enum method {
+    ARCFACE_PREBATCHNORM = 1;
+    ARCFACE_AVGPOOL = 2;
+  }
+
+  enum custom_layers {
+    LOGNORM = 1;
+    RISK_RATIO = 2;
+  }
+
+  optional float rd = 1 [default=1.2];
+}

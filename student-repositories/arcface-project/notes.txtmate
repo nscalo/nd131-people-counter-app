@@ -1,0 +1,11 @@
+conversion from tensorflow .pb to openvino xml
+
+blocked by Acos and Cos operators
+
+I had to remove these nodes from export in tensorflow as they were unnecessary.
+
+
+execution command
+-----------------
+
+/usr/bin/python3.6 /opt/intel/openvino/deployment_tools/model_optimizer/mo_tf.py --tensorflow_object_detection_api_pipeline_config pipeline.config --tensorflow_use_custom_operations_config operations.json --input_model arcface.pb --input_shape "[1,160,160,1],[1,1000]" --input "input_1,input_2"
