@@ -1,4 +1,4 @@
 numpy==1.16.1
 keras==2.3.1
 pydaal==2019.0.0.20180713
-tensorflow==1.13.2
+tensorflow==1.15.2
